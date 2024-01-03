@@ -70,9 +70,9 @@ Console.Write("Date: "); DateTime date = Convert.ToDateTime(Console.ReadLine());
 switch (date.Month)
 {
     case 12: case 1: case 2: Console.WriteLine($"Winter {date.DayOfWeek}"); break;
-    case 3: case 4: case 5: Console.WriteLine("Spring"); break;
-    case 6: case 7: case 8: Console.WriteLine("Summer"); break;
-    case 9: case 10: case 11: Console.WriteLine("Autumn"); break;
+    case 3: case 4: case 5: Console.WriteLine($"Spring {date.DayOfWeek}"); break;
+    case 6: case 7: case 8: Console.WriteLine($"Summer {date.DayOfWeek}"); break;
+    case 9: case 10: case 11: Console.WriteLine($"Autumn {date.DayOfWeek}"); break;
     default:
         Console.WriteLine("Month from 1 to 12"); break;
 }
