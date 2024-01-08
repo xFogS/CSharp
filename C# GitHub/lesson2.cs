@@ -1,6 +1,6 @@
 ﻿Random rand = new Random();
-Console.InputEncoding = Console.InputEncoding;
-Console.OutputEncoding = Console.OutputEncoding;
+Console.InputEncoding = Encoding.Unicode; // ~~
+Console.OutputEncoding = Encoding.Unicode; // ~~
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 //Оголосити одновимірний (5 елементів) масив з назвою 
