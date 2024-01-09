@@ -116,7 +116,7 @@ for (int i = 0; i < _arr.GetLength(0); i++)
 for (int i = _min; i < _max; i++) _sum += i;
 Console.WriteLine($"sum: {_sum}");
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Дізнаюсь на уроці~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 //Користувач вводить рядок із клавіатури. Необхідно 
 //зашифрувати цей рядок, використовуючи шифр Цезаря. +++
@@ -124,23 +124,28 @@ Console.WriteLine($"sum: {_sum}");
 //розшифрування. ---
 
 int key;
-string? encription;
-char[] enAlphabet = ['a','b','c','d','e','f','g','h',
-'i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];//26
-
+string encription = "";
 Console.Write("Text: "); encription = Console.ReadLine();
 Console.Write("Key : "); key = Convert.ToInt32(Console.ReadLine());
 
-string[] newEncription = new string[encription.Length]; //початк.спосіб
-
+StringBuilder newEncription = new();
+StringBuilder newDest = new();
 if (encription != null)
 {
-    for (int i = 0; i < encription.Length; i++)
-        newEncription[i] = ((char)encription[i] + key).ToString();
-    for (int i = 0; i < newEncription.Length; i++)
-        Console.Write($"{newEncription[i]} ");
-}
+    foreach (char i in encription)
+    {
+        int nn = (i - 97 + key) % 26 + 97;
+        newEncription.Append(((char)nn));
+    }
+    Console.WriteLine(newEncription.ToString());
 
+    foreach (char i in newEncription.ToString())
+    {
+        int destr = (i - 97 - key) % 26 + 97;
+        newDest.Append(((char)destr));
+    }
+    Console.WriteLine(newDest.ToString());
+}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 //Створіть додаток, який здійснює операції над матрицями:
