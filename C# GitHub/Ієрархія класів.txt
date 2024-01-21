@@ -1,0 +1,17 @@
+`Створити ієрархію класів тварин, не меньше 4-х рівнів. Конкретні тварини повинні називати себе і 
+мати можливість подавати голос.
+Подумати над абстракцією, віртуальністю. Від деяких класів не повинно бути можливості наслідування.
+Створити масив тварин і продемонструвати "голосові сдібності".
+
+
+				ANIMAL -- >> OnTheEarth -->> BIRD -- >> FISH
+Animal -> abstract Name, Voice
+	If animal no have name/voice, her method is find in the basic class
+	Від деяких класів не повинно бути можливості наслідування. 
+OnTheEarth : Animal -> override Name, Voice. ... sealed after realization methods 
+BIRD: Animal -> override Name, Voice. ... sealed after realization methods 
+FISH: Animal -> override Name, Voice. ... sealed after realization methods 
+
+
+1. Кожна тварина має називати себе та можливість подавати голос
+	1.1 - Щодо тварин: Наземні(чотириногі), Повітряні(Птахи), Водні(Риби)
