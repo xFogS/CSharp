@@ -23,7 +23,7 @@ namespace App
             new Employee()
             {
                 Name = "Gololobov Serhiy Anatoliyovych",
-                Position = "Seriff",
+                Position = "Sheriff",
                 Salary = 410000,
                 Email = "GSSa02_1@mail.com"
             },
