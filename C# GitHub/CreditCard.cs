@@ -76,7 +76,6 @@ namespace bank
         }
 
         public event Action<string> MainPushMessage;
-        public event Action<string> PushOnEmail;
         public event Action<string> StartUsingCreditMoney;
     }
 }
