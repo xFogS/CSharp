@@ -13,9 +13,7 @@ namespace bank
         private string PINCode { get; set; } //error about set.lenght(4 - default PinCode) ?: - going 
         private int CreditLimit { get; set; } = 0;
         private int Balance { get; set; } = 0;
-        public event Action<string> MainPushMessage;
-        public event Action<string> PushOnEmail;
-        public event Action<string> StartUsingCreditMoney;
+
         public CreditCard(string number, string person, string pin, int limit)
         {
             NumberCard = number; NamePerson = person;
@@ -76,6 +74,10 @@ namespace bank
         {
             Console.WriteLine($"Number: {NumberCard}\nPerson: {NamePerson}\nPIN: {PINCode}\nLimit: {CreditLimit}\nBalance: {Balance}");
         }
+
+        public event Action<string> MainPushMessage;
+        public event Action<string> PushOnEmail;
+        public event Action<string> StartUsingCreditMoney;
     }
 }
 
@@ -85,7 +87,7 @@ public class Program
     {
         CreditCard card = new CreditCard("9342 5325 2394 3249", "FDS SDF ASD", "43823", 1500);
         card.MainPushMessage += Card_PushOnPhone;
-        card.PushOnEmail += Card_PushOnEmail;
+        card.MainPushMessage += Card_PushOnEmail;
         card.StartUsingCreditMoney += Card_StartUsingCreditMoney;
 
         card.ClientInfo();
