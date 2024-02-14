@@ -1,4 +1,4 @@
-﻿using bank;
+using bank;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,19 +52,24 @@ namespace bank
                     MainPushMessagePhone?.Invoke($"You take money. Now your Balance: [{Balance}]");
                     MainPushMessageEmail?.Invoke($"You take money. Now your Balance: [{Balance}]");
                 }
-                else { MainPushMessagePhone?.Invoke("You cannot withdraw your money.You don't have them!");
-                       MainPushMessageEmail?.Invoke("You cannot withdraw your money.You don't have them!"); }
+                else { MainPushMessagePhone?.Invoke("You cannot withdraw your money. You don't have them!");
+                       MainPushMessageEmail?.Invoke("You cannot withdraw your money. You don't have them!"); }
             }
         }
         public void NewChangePINCode(string pin)
         {
-            if (pin.Length <= 4)
+            try
             {
-                PINCode = pin;
-                string msg = $"\tYour set new PinCode: [{PINCode}]\n\tPlease don't say nobody";
-                MainPushMessagePhone?.Invoke(msg);
-                MainPushMessageEmail?.Invoke(msg);
+                if (pin.Length <= 4)
+                {
+                    PINCode = pin;
+                    string msg = $"\tYour set new PinCode: [{PINCode}]\n\tPlease don't say nobody";
+                    MainPushMessagePhone?.Invoke(msg);
+                    MainPushMessageEmail?.Invoke(msg);
+                }
+                else throw new Exception("Error: PinCode has < 4 digits or > 4 ");
             }
+            catch (Exception what) {Console.WriteLine(what.Message);}
         }
         public void NewCreditLimit(uint limit = 1500)
         {
@@ -91,7 +96,7 @@ public class Program
     static void Main(string[] args)
     {
         CreditCard card = new CreditCard("9342 5325 2394 3249", "FDS SDF ASD", "43823", 1500);
-        card.MainPushMessagePhone += Card_PushOnPhone;
+        //card.MainPushMessagePhone += Card_PushOnPhone;
         card.MainPushMessageEmail += Card_PushOnEmail;
         card.StartUsingCreditMoney += Card_StartUsingCreditMoney;
 
@@ -101,13 +106,12 @@ public class Program
         card.UsingSummOnBalance(300);
         card.AddSummOnBalance(500);
         card.UsingSummOnBalance(200);
-        card.NewChangePINCode("9321");
+        card.NewChangePINCode("93215");
         card.UsingSummOnBalance(2030);
         card.UsingSummOnBalance(1000);
         card.ClientInfo();
     }
-
-    private static void Card_PushOnPhone(string obj) => Console.WriteLine($"Phone: {obj}");
+    private static void Card_PushOnPhone(string obj) => Console.WriteLine($"Phone: {obj}"); 
     private static void Card_PushOnEmail(string obj) => Console.WriteLine($"Email: {obj}");
     private static void Card_StartUsingCreditMoney(string obj) => Console.WriteLine(obj);
 }
