@@ -58,18 +58,13 @@ namespace bank
         }
         public void NewChangePINCode(string pin)
         {
-            try
+            if (pin.Length <= 4)
             {
-                if (pin.Length <= 4)
-                {
-                    PINCode = pin;
-                    string msg = $"\tYour set new PinCode: [{PINCode}]\n\tPlease don't say nobody";
-                    MainPushMessagePhone?.Invoke(msg);
-                    MainPushMessageEmail?.Invoke(msg);
-                }
-                else throw new Exception("Error: PinCode has < 4 digits or > 4 ");
+                PINCode = pin;
+                string msg = $"\tYour set new PinCode: [{PINCode}]\n\tPlease don't say nobody";
+                MainPushMessagePhone?.Invoke(msg);
+                MainPushMessageEmail?.Invoke(msg);
             }
-            catch (Exception what) {Console.WriteLine(what.Message);}
         }
         public void NewCreditLimit(uint limit = 1500)
         {
