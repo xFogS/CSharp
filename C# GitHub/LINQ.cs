@@ -6,31 +6,31 @@ using System.Text;
 using System.Threading.Tasks;
 using Menu;
 
-//2-- // на мій погляд, мені пришлось би перероблювати всю структуру коду на статичний
+//2--
 
 namespace LINQ
 {
     public class CompanyInfo
     {
-        public string? NameCompany { get; set; }
-        public DateTime DateCreate { get; set; }
-        public string? Industry { get; set; }
-        public string? Director { get; set; }
-        public int CountEmployees { get; set; }
-        public string? Address { get; set; }
+        public string? NameCompany { get; set; } = "None";
+        public DateTime DateCreate { get; set; } = new DateTime(2024, 12, 12);
+        public string? Industry { get; set; } = "None";
+        public string? Director { get; set; } = "None";
+        public int CountEmployees { get; set; } = 0;
+        public string? Address { get; set; } = "None";
         public List<CompanyEmployees>? CompanyEmployees { get; set; }
     }
     public class CompanyEmployees
     {
-        public string? Name { get; set; }
-        public string? Position { get; set; }
-        public string? ContactPhone { get; set; }
-        public string? Email { get; set; }
-        public int Salary { get; set; }
+        public string? Name { get; set; } = "None";
+        public string? Position { get; set; } = "None";
+        public string? ContactPhone { get; set; } = "None";
+        public string? Email { get; set; } = "None";
+        public int Salary { get; set; } = 0;
     }
     public class Company
     {
-        //Array/List - Your choice.
+        public static int count = 0;
         List<CompanyInfo> cmp = new List<CompanyInfo>()
         {
             new CompanyInfo()
@@ -45,27 +45,27 @@ namespace LINQ
                 {
                     new CompanyEmployees()
                     {
-                        Name = "m",
-                        Position = "m",
-                        ContactPhone = "p",
-                        Email = "",
-                        Salary = 0,
+                        Name = "Fedor",
+                        Position = "Middle",
+                        ContactPhone = "2351234",
+                        Email = "diap21@food.com",
+                        Salary = 140000,
                     },
                     new CompanyEmployees()
                     {
-                        Name = "",
-                        Position = "",
-                        ContactPhone = "",
-                        Email = "",
-                        Salary = 0,
+                        Name = "Tom",
+                        Position = "Manager",
+                        ContactPhone = "0128422",
+                        Email = "odslq@food.com",
+                        Salary = 59000,
                     },
                     new CompanyEmployees()
                     {
-                        Name = "",
-                        Position = "",
-                        ContactPhone = "",
-                        Email = "",
-                        Salary = 0,
+                        Name = "John",
+                        Position = "Senior",
+                        ContactPhone = "2393812",
+                        Email = "dioslqw@food.com",
+                        Salary = 270000,
                     },
                 },
             },
@@ -81,27 +81,27 @@ namespace LINQ
                 {
                     new CompanyEmployees()
                     {
-                        Name = "",
-                        Position = "",
-                        ContactPhone = "",
-                        Email = "",
-                        Salary = 0,
+                        Name = "Lionel",
+                        Position = "Manager",
+                        ContactPhone = "623612",
+                        Email = "sdfhsdfh@gmail.com",
+                        Salary = 88000,
                     },
                     new CompanyEmployees()
                     {
-                        Name = "",
-                        Position = "",
-                        ContactPhone = "",
-                        Email = "",
-                        Salary = 0,
+                        Name = "rtue",
+                        Position = "erre",
+                        ContactPhone = "ererr",
+                        Email = "erher",
+                        Salary = 234234,
                     },
                     new CompanyEmployees()
                     {
-                        Name = "",
-                        Position = "",
-                        ContactPhone = "",
-                        Email = "",
-                        Salary = 0,
+                        Name = "dfgjdfgj",
+                        Position = "dsfgds",
+                        ContactPhone = "2364236",
+                        Email = "sdfhdss@gmail.com",
+                        Salary = 64333,
                     },
                 },
             },
@@ -117,27 +117,27 @@ namespace LINQ
                 {
                     new CompanyEmployees()
                     {
-                        Name = "",
-                        Position = "",
-                        ContactPhone = "",
-                        Email = "",
-                        Salary = 0,
+                        Name = "dfs;lse",
+                        Position = "asewq",
+                        ContactPhone = "2364236",
+                        Email = "sdfhdss@gmail.com",
+                        Salary = 568423,
                     },
                     new CompanyEmployees()
                     {
-                        Name = "",
-                        Position = "",
-                        ContactPhone = "",
-                        Email = "",
-                        Salary = 0,
+                        Name = "qweqw",
+                        Position = "4wuasd",
+                        ContactPhone = "2364236",
+                        Email = "sdfhdss@gmail.com",
+                        Salary = 348534,
                     },
                     new CompanyEmployees()
                     {
-                        Name = "",
-                        Position = "",
-                        ContactPhone = "",
-                        Email = "",
-                        Salary = 0,
+                        Name = "assdga",
+                        Position = "Manager",
+                        ContactPhone = "lasjdoqw",
+                        Email = "sdfhdss@gmail.com",
+                        Salary = 190432,
                     },
                 }
             },
@@ -158,6 +158,7 @@ namespace LINQ
         }
         private void PrintLinqEmployee(IEnumerable<CompanyInfo> info)
         {
+            Console.Clear();
             foreach (CompanyInfo j in info)
             {
                 Console.WriteLine($"Company: {j.NameCompany}\n");
@@ -169,8 +170,8 @@ namespace LINQ
                         $"Email - {i.Email}\n" +
                         $"Salary - {i.Salary}\n");
                 }
-                Thread.Sleep(7000);
             }
+            Thread.Sleep(7000);
         }
         public void mainCompany()
         {
@@ -238,7 +239,6 @@ namespace LINQ
                                                     select i;
                                         PrintLinq(print); break;
                                     }
-                                case 2: return;
                             }
                             break;
                         }
@@ -262,7 +262,6 @@ namespace LINQ
                                                     select i;
                                         PrintLinq(print); break;
                                     }
-                                case 2: return;
                             }
                             break;
                         }
@@ -285,7 +284,6 @@ namespace LINQ
                                                     where i.CountEmployees >= 100 && i.CountEmployees <= 300
                                                     select i; PrintLinq(print); break;
                                     }
-                                case 2: return;
                             }
                             break;
                         }
@@ -302,44 +300,104 @@ namespace LINQ
                                                     select i;
                                         PrintLinq(print); break;
                                     }
-                                case 1: return;
                             }
                             break;
                         }
                     case 7:
                         {
+                            Console.Clear();
                             int empChoice = ConsoleMenu.SelectVertical(HPosition.Center, VPosition.Center, HorizontalAlignment.Center,
                                 "All List", ">Samary", "Postion: Manager", "Phone: +23",
                                 "Email: +di", "Name: Lionel", "Return back");
                             switch (empChoice)
                             {
-                                //
-                                case 0:
+                                case 0://all list
                                     {
-                                        Console.Clear(); Console.Write("Enter the Industry : ");
-                                        string? str = Console.ReadLine().ToUpper();
+                                        Console.Write("Enter the Industry : ");
+                                        string? str = Console.ReadLine().ToLower();
                                         if (str != null)
                                         {
-                                            var emp = from i in cmp
-                                                      where i.Industry == str
-                                                      select i;
-                                            PrintLinqEmployee(emp); break;
+                                            while (count < cmp.Count)
+                                            {
+                                                var emp = from i in cmp
+                                                          where i.Industry.ToLower() == str
+                                                          select i;
+                                                PrintLinqEmployee(emp); ++count;
+                                            }
                                         }
                                         break;
                                     }
-                                //all list
-                                case 1: return; //samary
-                                case 2: return; //manager
-                                case 3: return; // phone
-                                case 4: return; //email
-                                case 5: return; // name
-                                case 6: return; // return
+                                case 1://samary
+                                    {
+                                        Console.Write("Enter the Industry : ");
+                                        string? str = Console.ReadLine().ToLower();
+                                        while (count < cmp.Count)
+                                        {
+                                            var emp = from i in cmp
+                                                      where i.Industry.ToLower() == str & i.CompanyEmployees[count].Salary > 100000
+                                                      select i;
+                                            PrintLinqEmployee(emp); ++count;
+                                        }
+                                        break;
+                                    }
+                                case 2://manager
+                                    {
+                                        while (count < cmp.Count)
+                                        {
+                                            var emp = from i in cmp
+                                                      where i.CompanyEmployees[count].Position == "Manager"
+                                                      select i;
+                                            PrintLinqEmployee(emp); ++count;
+                                        }
+                                        break;
+                                    }
+                                case 3:// phone
+                                    {
+                                        while (count < cmp.Count)
+                                        {
+                                            var emp = from i in cmp
+                                                      where i.CompanyEmployees[count].ContactPhone[0] == 2 && i.CompanyEmployees[count].ContactPhone[1] == 3
+                                                      select i;
+                                            PrintLinqEmployee(emp); ++count;
+                                        }
+                                        break;
+                                    }
+                                case 4: //email
+                                    {
+                                        while (count < cmp.Count)
+                                        {
+                                            var emp = from i in cmp
+                                                      where i.CompanyEmployees[count].Email[0] == 'd' && i.CompanyEmployees[count].Email[1] == 'i'
+                                                      select i;
+                                            PrintLinqEmployee(emp); ++count;
+                                        }
+                                        break;
+                                    }
+                                case 5:// name
+                                    {
+                                        while (count < cmp.Count)
+                                        {
+                                            var emp = from i in cmp
+                                                      where i.CompanyEmployees[count].Name == "Lionel"
+                                                      select i;
+                                            PrintLinqEmployee(emp); ++count;
+                                        }
+                                        break;
+                                    }
                             }
-                            break;
+                            break; //return
                         }
-                    case 8: return;
+                    case 8: break;
                 }
             } while (true);
+        }
+    }
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            Company company = new Company();
+            company.mainCompany();
         }
     }
 }
