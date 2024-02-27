@@ -10,6 +10,7 @@ using Menu;
 
 namespace LINQ
 {
+
     public class CompanyInfo
     {
         public string? NameCompany { get; set; } = "None";
@@ -83,7 +84,7 @@ namespace LINQ
                     {
                         Name = "Lionel",
                         Position = "Manager",
-                        ContactPhone = "623612",
+                        ContactPhone = "6236124",
                         Email = "sdfhsdfh@gmail.com",
                         Salary = 88000,
                     },
@@ -91,7 +92,7 @@ namespace LINQ
                     {
                         Name = "rtue",
                         Position = "erre",
-                        ContactPhone = "ererr",
+                        ContactPhone = "4636212",
                         Email = "erher",
                         Salary = 234234,
                     },
@@ -127,7 +128,7 @@ namespace LINQ
                     {
                         Name = "qweqw",
                         Position = "4wuasd",
-                        ContactPhone = "2364236",
+                        ContactPhone = "9964236",
                         Email = "sdfhdss@gmail.com",
                         Salary = 348534,
                     },
@@ -135,7 +136,7 @@ namespace LINQ
                     {
                         Name = "assdga",
                         Position = "Manager",
-                        ContactPhone = "lasjdoqw",
+                        ContactPhone = "8674543",
                         Email = "sdfhdss@gmail.com",
                         Salary = 190432,
                     },
@@ -156,22 +157,13 @@ namespace LINQ
             }
             Thread.Sleep(5000);
         }
-        private void PrintLinqEmployee(IEnumerable<CompanyInfo> info)
+        public void InfoEmployee(IEnumerable<CompanyEmployees> s)
         {
-            Console.Clear();
-            foreach (CompanyInfo j in info)
-            {
-                Console.WriteLine($"Company: {j.NameCompany}\n");
-                foreach (CompanyEmployees i in j.CompanyEmployees)
-                {
-                    Console.WriteLine($"Name - {i.Name}\n" +
+            foreach (CompanyEmployees i in s) Console.WriteLine($"Name - {i.Name}\n" +
                         $"Position - {i.Position}\n" +
                         $"Phone - {i.ContactPhone}\n" +
                         $"Email - {i.Email}\n" +
                         $"Salary - {i.Salary}\n");
-                }
-            }
-            Thread.Sleep(7000);
         }
         public void mainCompany()
         {
@@ -192,8 +184,7 @@ namespace LINQ
                     case 1:
                         {
                             var print = from i in cmp
-                                        where i.NameCompany == "Food"
-                                        select i;
+                                        where i.NameCompany == "Food" select i;
                             PrintLinq(print); break;
                         }
                     case 2:
@@ -205,15 +196,13 @@ namespace LINQ
                                 case 0:
                                     {
                                         var print = from pr in cmp
-                                                    where DateTime.Now.Year - 2 == pr.DateCreate.Year
-                                                    select pr;
+                                                    where DateTime.Now.Year - 2 == pr.DateCreate.Year select pr;
                                         PrintLinq(print); break;
                                     }
                                 case 1:
                                     {
                                         var print = from i in cmp
-                                                    where (DateTime.Now - i.DateCreate).Days > 123
-                                                    select i;
+                                                    where (DateTime.Now - i.DateCreate).Days > 123 select i;
                                         PrintLinq(print); break;
                                     }
                             }
@@ -228,15 +217,13 @@ namespace LINQ
                                 case 0:
                                     {
                                         var print = from i in cmp
-                                                    where i.Industry == "Marketing"
-                                                    select i;
+                                                    where i.Industry == "Marketing" select i;
                                         PrintLinq(print); break;
                                     }
                                 case 1:
                                     {
                                         var print = from i in cmp
-                                                    where i.Industry == "IT"
-                                                    select i;
+                                                    where i.Industry == "IT" select i;
                                         PrintLinq(print); break;
                                     }
                             }
@@ -251,15 +238,13 @@ namespace LINQ
                                 case 0:
                                     {
                                         var print = from i in cmp
-                                                    where i.Director == "White"
-                                                    select i;
+                                                    where i.Director == "White" select i;
                                         PrintLinq(print); break;
                                     }
                                 case 1:
                                     {
                                         var print = from i in cmp
-                                                    where i.Director == "Black" && i.NameCompany == "White"
-                                                    select i;
+                                                    where i.Director == "Black" && i.NameCompany == "White" select i;
                                         PrintLinq(print); break;
                                     }
                             }
@@ -274,8 +259,7 @@ namespace LINQ
                                 case 0:
                                     {
                                         var print = from i in cmp
-                                                    where i.CountEmployees > 100
-                                                    select i;
+                                                    where i.CountEmployees > 100 select i;
                                         PrintLinq(print); break;
                                     }
                                 case 1:
@@ -296,8 +280,7 @@ namespace LINQ
                                 case 0:
                                     {
                                         var print = from i in cmp
-                                                    where i.Address == "London"
-                                                    select i;
+                                                    where i.Address == "London" select i;
                                         PrintLinq(print); break;
                                     }
                             }
@@ -317,13 +300,23 @@ namespace LINQ
                                         string? str = Console.ReadLine().ToLower();
                                         if (str != null)
                                         {
-                                            while (count < cmp.Count)
+                                            var emp = from i in cmp
+                                                      where i.Industry.ToLower() == str select i;
+
+                                            Console.Clear();
+                                            foreach (CompanyInfo j in emp)
                                             {
-                                                var emp = from i in cmp
-                                                          where i.Industry.ToLower() == str
-                                                          select i;
-                                                PrintLinqEmployee(emp); ++count;
+                                                Console.WriteLine($"Company: {j.NameCompany}\n");
+                                                foreach (CompanyEmployees i in j.CompanyEmployees)
+                                                {
+                                                    Console.WriteLine($"Name - {i.Name}\n" +
+                                                        $"Position - {i.Position}\n" +
+                                                        $"Phone - {i.ContactPhone}\n" +
+                                                        $"Email - {i.Email}\n" +
+                                                        $"Salary - {i.Salary}\n");
+                                                }
                                             }
+                                            Thread.Sleep(7000);
                                         }
                                         break;
                                     }
@@ -331,63 +324,62 @@ namespace LINQ
                                     {
                                         Console.Write("Enter the Industry : ");
                                         string? str = Console.ReadLine().ToLower();
-                                        while (count < cmp.Count)
+                                        var emp = (from i in cmp
+                                                   where i.Industry.ToLower() == str select i).ToList();
+                                        foreach (CompanyInfo item in emp)
                                         {
-                                            var emp = from i in cmp
-                                                      where i.Industry.ToLower() == str & i.CompanyEmployees[count].Salary > 100000
-                                                      select i;
-                                            PrintLinqEmployee(emp); ++count;
+                                            var k = from i in item.CompanyEmployees
+                                                    where i.Salary > 100000 select i;
+                                            InfoEmployee(k);
                                         }
-                                        break;
+                                        Thread.Sleep(30000); break;
                                     }
                                 case 2://manager
                                     {
-                                        while (count < cmp.Count)
+                                        foreach (CompanyInfo item in cmp)
                                         {
-                                            var emp = from i in cmp
-                                                      where i.CompanyEmployees[count].Position == "Manager"
-                                                      select i;
-                                            PrintLinqEmployee(emp); ++count;
+                                            var k = from j in item.CompanyEmployees
+                                                    where j.Position == "Manager" select j;
+                                            InfoEmployee(k);
                                         }
-                                        break;
+                                        Thread.Sleep(3000); break;
                                     }
                                 case 3:// phone
                                     {
-                                        while (count < cmp.Count)
+                                        foreach (CompanyInfo fh in cmp)
                                         {
-                                            var emp = from i in cmp
-                                                      where i.CompanyEmployees[count].ContactPhone[0] == 2 && i.CompanyEmployees[count].ContactPhone[1] == 3
-                                                      select i;
-                                            PrintLinqEmployee(emp); ++count;
+                                            var k = from i in fh.CompanyEmployees
+                                                  where i.ContactPhone[0] == '2' && i.ContactPhone[1] == '3' select i;
+                                            InfoEmployee(k);
                                         }
-                                        break;
+                                        Thread.Sleep(3000); break;
                                     }
                                 case 4: //email
                                     {
-                                        while (count < cmp.Count)
+                                        foreach (CompanyInfo fh in cmp)
                                         {
-                                            var emp = from i in cmp
-                                                      where i.CompanyEmployees[count].Email[0] == 'd' && i.CompanyEmployees[count].Email[1] == 'i'
+                                            var k = from i in fh.CompanyEmployees
+                                                      where i.Email[0] == 'd' && i.Email[1] == 'i'
                                                       select i;
-                                            PrintLinqEmployee(emp); ++count;
+                                            InfoEmployee(k);
                                         }
-                                        break;
+                                        Thread.Sleep(3000); break;
                                     }
                                 case 5:// name
                                     {
-                                        while (count < cmp.Count)
+                                        foreach (CompanyInfo fh in cmp)
                                         {
-                                            var emp = from i in cmp
-                                                      where i.CompanyEmployees[count].Name == "Lionel"
+                                            var k = from i in fh.CompanyEmployees
+                                                      where i.Name == "Lionel"
                                                       select i;
-                                            PrintLinqEmployee(emp); ++count;
+                                            InfoEmployee(k);
                                         }
-                                        break;
+                                        Thread.Sleep(3000); break;
                                     }
                             }
                             break; //return
                         }
-                    case 8: break;
+                    case 8: return;
                 }
             } while (true);
         }
